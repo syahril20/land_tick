@@ -89,6 +89,11 @@ func (h *HandlerUsers) CreateUser(c echo.Context) error {
 			Message: err.Error()})
 	}
 	Roles, err := h.UserRepositories.GetRoleId(request.IdRole)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, resultdto.ErrorResult{
+			Code:    http.StatusBadRequest,
+			Message: err.Error()})
+	}
 
 	user := models.User{
 		NamaLengkap:  request.NamaLengkap,
