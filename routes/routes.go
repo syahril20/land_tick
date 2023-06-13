@@ -7,5 +7,6 @@ func RouteInit(e *echo.Group) {
 	KeretaRoutes(e)
 	UserRoutes(e)
 	TiketRoutes(e)
+	TransaksiRoutes(e)
 
 }

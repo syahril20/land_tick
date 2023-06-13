@@ -17,8 +17,15 @@ type Transaksi struct {
 }
 
 type TransaksiResponse struct {
-	Id               int    `json:"id_transaksi"`
-	TanggalTransaksi string `json:"tanggal_transaksi"`
+	Id               int           `json:"id_transaksi"`
+	TanggalTransaksi string        `json:"tanggal_transaksi"`
+	Qty              int           `json:"qty" form:"qty"`
+	Total            int           `json:"total" form:"total"`
+	Status           string        `json:"status" form:"status"`
+	IdUser           int           `json:"id_user" form:"id_user"`
+	User             UserResponse  `json:"user" gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;foreignKey:IdUser"`
+	IdTiket          int           `json:"id_tiket" form:"id_tiket"`
+	Tiket            TiketResponse `json:"tiket" gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;foreignKey:IdTiket"`
 }
 
 func (TransaksiResponse) TableName() string {
