@@ -8,7 +8,11 @@ import (
 
 func RunMigration() {
 	err := postgres.DB.AutoMigrate(
+		&models.Role{},
 		&models.User{},
+		&models.Tiket{},
+		&models.Kereta{},
+		&models.Transaksi{},
 	)
 
 	if err != nil {
