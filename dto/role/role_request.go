@@ -1,11 +1,9 @@
 package roledto
 
 type CreateRole struct {
-	Id       int    `json:"id_role"`
-	NameRole string `json:"name_role"`
+	NameRole string `json:"name_role" form:"name_role" validate:"required"`
 }
 
 type UpdateRole struct {
-	Id       int    `json:"id_role"`
-	NameRole string `json:"name_role"`
+	NameRole string `json:"name_role" form:"name_role"`
 }
