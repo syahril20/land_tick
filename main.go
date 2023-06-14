@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"landtick/database"
 	"landtick/pkg/postgres"
@@ -19,9 +20,9 @@ func main() {
 	database.RunMigration()
 
 	routes.RouteInit(e.Group("/api/v1"))
-	// PORT := os.Getenv("DB_PORT")
+	PORT := os.Getenv("DB_PORT")
 
-	fmt.Println("Server Telah Berjalan di 😘: 5000")
-	e.Logger.Fatal(e.Start(":5000"))
+	fmt.Println("Server Telah Berjalan di " + PORT)
+	e.Logger.Fatal(e.Start(":" + PORT))
 
 }
