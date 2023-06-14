@@ -2,6 +2,7 @@ package routes
 
 import (
 	"landtick/handler"
+	"landtick/pkg/middleware"
 	"landtick/pkg/postgres"
 	"landtick/repositories"
 
@@ -11,9 +12,9 @@ import (
 func UserRoutes(e *echo.Group) {
 	UserRepository := repositories.RepositoryUser(postgres.DB)
 	h := handler.HandlerUser(UserRepository)
-	e.GET("/user", h.FindUser)
-	e.GET("/user/:id", h.FindUserId)
-	e.POST("/user", h.CreateUser)
-	e.PATCH("/user/:id", h.UpdateUser)
-	e.DELETE("/user/:id", h.DeleteUser)
+	e.GET("/user", middleware.Auth(h.FindUser))
+	e.GET("/user/:id", middleware.Auth(h.FindUserId))
+	e.POST("/user", middleware.Auth(h.CreateUser))
+	e.PATCH("/user/:id", middleware.Auth(h.UpdateUser))
+	e.DELETE("/user/:id", middleware.Auth(h.DeleteUser))
 }
