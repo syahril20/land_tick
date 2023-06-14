@@ -5,8 +5,8 @@ import "time"
 type User struct {
 	Id           int          `json:"id_user" form:"id_user" gorm:"primary_key:auto_increment"`
 	NamaLengkap  string       `json:"nama_lengkap" form:"nama_lengkap" gorm:"type: varchar(30)"`
-	Username     string       `json:"username" form:"username" gorm:"type: varchar(10)"`
-	Email        string       `json:"email" form:"email" gorm:"type: varchar(20)"`
+	Username     string       `json:"username" form:"username" gorm:"type: varchar(20)"`
+	Email        string       `json:"email" form:"email" gorm:"type: varchar(50)"`
 	Password     string       `json:"password" form:"password" gorm:"type: varchar(20)"`
 	JenisKelamin string       `json:"jenis_kelamin" form:"jenis_kelamin" gorm:"type: varchar(10)"`
 	Telp         string       `json:"telp" form:"telp" gorm:"type: varchar(15)"`
