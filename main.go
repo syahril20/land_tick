@@ -20,7 +20,7 @@ func main() {
 	database.RunMigration()
 
 	routes.RouteInit(e.Group("/api/v1"))
-	PORT := os.Getenv("DB_PORT")
+	PORT := os.Getenv("PORT")
 
 	fmt.Println("Server Telah Berjalan di " + PORT)
 	e.Logger.Fatal(e.Start(":" + PORT))

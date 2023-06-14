@@ -19,5 +19,5 @@ func RunMigration() {
 		panic("Migration Failed")
 	}
 
-	fmt.Println("Migration Failed")
+	fmt.Println("SETAN")
 }
