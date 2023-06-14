@@ -2,6 +2,7 @@ package routes
 
 import (
 	"landtick/handler"
+	"landtick/pkg/middleware"
 	"landtick/pkg/postgres"
 	"landtick/repositories"
 
@@ -13,7 +14,7 @@ func KeretaRoutes(e *echo.Group) {
 	h := handler.HandlerKereta(KeretaRepository)
 	e.GET("/kereta", h.FindKereta)
 	e.GET("/kereta/:id", h.FindKeretaId)
-	e.POST("/kereta", h.CreateKereta)
-	e.PATCH("/kereta/:id", h.UpdateKereta)
-	e.DELETE("/kereta/:id", h.DeleteKereta)
+	e.POST("/kereta", middleware.Auth(h.CreateKereta))
+	e.PATCH("/kereta/:id", middleware.Auth(h.UpdateKereta))
+	e.DELETE("/kereta/:id", middleware.Auth(h.DeleteKereta))
 }

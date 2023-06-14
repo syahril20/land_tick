@@ -2,6 +2,7 @@ package routes
 
 import (
 	"landtick/handler"
+	"landtick/pkg/middleware"
 	"landtick/pkg/postgres"
 	"landtick/repositories"
 
@@ -13,7 +14,7 @@ func TiketRoutes(e *echo.Group) {
 	h := handler.HandlerTiket(TiketRepository)
 	e.GET("/tiket", h.FindTiket)
 	e.GET("/tiket/:id", h.FindTiketId)
-	e.POST("/tiket", h.CreateTiket)
-	e.PATCH("/tiket/:id", h.UpdateTiket)
-	e.DELETE("/tiket/:id", h.DeleteTiket)
+	e.POST("/tiket", middleware.Auth(h.CreateTiket))
+	e.PATCH("/tiket/:id", middleware.Auth(h.UpdateTiket))
+	e.DELETE("/tiket/:id", middleware.Auth(h.DeleteTiket))
 }
