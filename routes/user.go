@@ -12,8 +12,8 @@ import (
 func UserRoutes(e *echo.Group) {
 	UserRepository := repositories.RepositoryUser(postgres.DB)
 	h := handler.HandlerUser(UserRepository)
-	e.GET("/user", middleware.Auth(h.FindUser))
-	e.GET("/user/:id", middleware.Auth(h.FindUserId))
+	e.GET("/user", h.FindUser)
+	e.GET("/users", middleware.Auth(h.FindUserId))
 	e.POST("/user", middleware.Auth(h.CreateUser))
 	e.PATCH("/user/:id", middleware.Auth(h.UpdateUser))
 	e.DELETE("/user/:id", middleware.Auth(h.DeleteUser))

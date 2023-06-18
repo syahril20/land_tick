@@ -22,13 +22,13 @@ func RepositoryUser(db *gorm.DB) *repositories {
 func (r *repositories) FindUser() ([]models.User, error) {
 	var User []models.User
 
-	err := r.db.Preload("RoleName").Find(&User).Error
+	err := r.db.Preload("RoleName").Preload("Transaksi.Tiket").Preload("Transaksi.Tiket.Kereta").Find(&User).Error
 	return User, err
 }
 
 func (r *repositories) FindUserId(Id int) (models.User, error) {
 	var Users models.User
-	err := r.db.Preload("RoleName").First(&Users, Id).Error
+	err := r.db.Preload("RoleName").Preload("Transaksi.Tiket").Preload("Transaksi.Tiket.Kereta").First(&Users, Id).Error
 
 	return Users, err
 }

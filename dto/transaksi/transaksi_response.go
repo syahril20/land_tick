@@ -5,7 +5,9 @@ import "landtick/models"
 type TransaksiResponse struct {
 	Id               int                  `json:"id_transaksi" `
 	TanggalTransaksi string               `json:"tanggal_transaksi"`
-	Qty              int                  `json:"qty"`
+	QtyDewasa        int                  `json:"qty_dewasa"`
+	QtyAnak          int                  `json:"qty_anak"`
+	PulangPergi      bool                 `json:"pulang_pergi"`
 	Total            int                  `json:"total"`
 	Status           string               `json:"status"`
 	IdUser           int                  `json:"id_user"`

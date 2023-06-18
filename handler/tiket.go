@@ -88,7 +88,7 @@ func (h *HandlerTikets) CreateTiket(c echo.Context) error {
 			Code:    http.StatusBadRequest,
 			Message: err.Error()})
 	}
-	Roles, err := h.TiketRepositories.GetKeretaId(request.IdKereta)
+	Kereta, err := h.TiketRepositories.GetKeretaId(request.IdKereta)
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, resultdto.ErrorResult{
 			Code:    http.StatusBadRequest,
@@ -98,7 +98,7 @@ func (h *HandlerTikets) CreateTiket(c echo.Context) error {
 	tiket := models.Tiket{
 		NamaKereta:       request.NamaKereta,
 		IdKereta:         request.IdKereta,
-		Kereta:           Roles,
+		Kereta:           Kereta,
 		TanggalBerangkat: request.TanggalBerangkat,
 		StasiunBerangkat: request.StasiunBerangkat,
 		JamBerangkat:     request.JamBerangkat,

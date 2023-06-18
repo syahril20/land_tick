@@ -13,6 +13,7 @@ type User struct {
 	Alamat       string       `json:"alamat" form:"alamat" gorm:"type: varchar(100)"`
 	IdRole       int          `json:"id_role" form:"id_role"`
 	RoleName     RoleResponse `json:"role_name" gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;foreignKey:IdRole"`
+	Transaksi    []Transaksi  `json:"transaksi" gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;foreignKey:IdUser"`
 	CreatedAt    time.Time    `json:"-"`
 	UpdatedAt    time.Time    `json:"-"`
 }

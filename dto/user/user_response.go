@@ -13,4 +13,5 @@ type UserResponse struct {
 	Alamat       string              `json:"alamat" form:"alamat"`
 	IdRole       int                 `json:"id_role" form:"id_role"`
 	RoleName     models.RoleResponse `json:"role_name"`
+	Transaksi    []models.Transaksi  `json:"transaksi"`
 }
