@@ -122,13 +122,13 @@ func (h *HandlerTransaksis) CreateTransaksi(c echo.Context) error {
 	request.IdUser = int(userId)
 	request.Status = "pending" // next time we will cover this in payment gateway material
 
-	user, _ := h.TransaksiRepositories.GetTransByUser(int(userId))
+	user, _ := h.TransaksiRepositories.GetUserId(int(userId))
 	validation := validator.New()
 	err := validation.Struct(request)
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, resultdto.ErrorResult{Code: http.StatusBadRequest, Message: err.Error()})
 	}
-	fmt.Println(user, "MEMEK")
+	fmt.Println(user, "")
 
 	var transaksiIsMatch = false
 	var transaksiId int
@@ -182,8 +182,8 @@ func (h *HandlerTransaksis) CreateTransaksi(c echo.Context) error {
 			Secure: true,
 		},
 		CustomerDetail: &midtrans.CustomerDetails{
-			FName: data.User.NamaLengkap,
-			Email: data.User.Email,
+			FName: user.NamaLengkap,
+			Email: user.Email,
 		},
 	}
 
